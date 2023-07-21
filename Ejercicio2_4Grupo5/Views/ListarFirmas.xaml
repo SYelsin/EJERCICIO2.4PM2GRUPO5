@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Ejercicio2_4Grupo5.Converter"
+             x:Class="Ejercicio2_4Grupo5.Views.ListarFirmas">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ConvertirImagen x:Key="ByteArrayToImage"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" BackgroundColor="#F5F5F5">
+            <Label Text="Listado de Firmas" FontSize="24" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" TextColor="#333333" Margin="0,20,0,10"/>
+
+            <CollectionView x:Name="listaFirmas" SelectionMode="Single">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate>
+                        <Frame BackgroundColor="White" Margin="5" CornerRadius="10" HasShadow="True" WidthRequest="100">
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" x:Name="imagen" Source="{Binding Firma, Converter={StaticResource ByteArrayToImage}}" Aspect="AspectFit" HeightRequest="100" WidthRequest="100"/>
+
+                                <Label Grid.Row="1" Text="{Binding Nombre}" TextColor="#1F731F" FontSize="18" FontAttributes="Bold" FontFamily="Arial" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+                                <Label Grid.Row="1" Text="{Binding Descripcion}" TextColor="#000000" FontSize="18" FontAttributes="Bold" FontFamily="Arial" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
